@@ -1,9 +1,15 @@
 import './App.css';
-import Signin from './Components/Signin';
+import BusinessDashoard from './Components/BusinessDashboard';
+import NaviBar from './Components/NavBar';
+// import Signin from './Components/Signin';
 
 function App() {
   return (
-      <Signin />
+    <div>
+      <NaviBar />
+      {/* <Signin /> */}
+      <BusinessDashoard />
+    </div>
   );
 }
 

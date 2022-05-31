@@ -21,7 +21,6 @@
 }
 
 .logo {
-
   height: 10rem;
   width: 20rem;
 
@@ -49,3 +48,32 @@
   color: black;
 }
 
+
+/* ul */
+.nav-style {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.items {
+  float: left;
+}
+
+.items a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.items a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #04AA6D;
+}

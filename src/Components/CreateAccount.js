@@ -36,7 +36,7 @@ const CreateAccount = () => {
 						</FormGroup>
 						<FormGroup row>
 							<Col sm={20}>
-								<Input type="password" name="password" id="examplePassword" placeholder="password" />
+								<Input type="password" name="password"  placeholder="password" />
 							</Col>
 						</FormGroup>
 					</Form>

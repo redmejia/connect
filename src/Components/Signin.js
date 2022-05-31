@@ -9,7 +9,7 @@ const Signin = () => {
 	return (
 		<>
 			<div className='logo'>
-				<img  src={logo} alt="connect" />
+				<img src={logo} alt="connect" />
 			</div>
 			<div className='box'>
 				<div className='signin-content'>
