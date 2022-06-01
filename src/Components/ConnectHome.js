@@ -2,11 +2,13 @@ import shirts from '../public/shirts.png'
 import sunOne from '../public/sun1.png'
 import sunTwo from '../public/sun2.png'
 import '../App.css'
+import NaviBar from '../Components/NavBar'
 
 
 const ConnectHome = () => {
 	return (
 		<>
+			<NaviBar />
 			<div className="container mt-5">
 				<div className="row row-cols-2">
 					<div className="col">

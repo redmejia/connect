@@ -1,11 +1,19 @@
 import { Form, FormGroup, Col, Input, Button } from 'reactstrap';
+import { useNavigate } from "react-router-dom";
 import '../App.css'
 import logo from '../public/connect.svg'
 import CreateAccount from './CreateAccount';
 
 
+
 const Signin = () => {
 
+	let navigate = useNavigate();
+	
+	const nav = () => {
+		navigate('/c/home')
+	}
+	
 	return (
 		<>
 			<div className='logo'>
@@ -25,7 +33,7 @@ const Signin = () => {
 							</Col>
 						</FormGroup>
 					</Form>
-					<Button color="primary">Signin</Button>
+					<Button onClick={() => nav()} color="primary">Signin</Button>
 					<br />
 					<CreateAccount />
 				</div>

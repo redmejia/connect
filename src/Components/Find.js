@@ -1,8 +1,10 @@
+import NaviBar from "./NavBar";
 
 const Find = () => {
 
 	return (
 		<>
+			<NaviBar />
 			<div className="container mt-5">
 				<div className="bus-types">
 					<div className="row row-cols-2 gy-4">

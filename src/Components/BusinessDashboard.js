@@ -1,4 +1,5 @@
 import CreateDeal from "./CreateDeal";
+import NaviBar from "./NavBar";
 
 const RenderDeals = ({ deal }) => {
 
@@ -34,7 +35,7 @@ const BusinessDashoard = () => {
 
 	return (
 		<>
-
+			<NaviBar />
 			<div className="container mt-5 bg-light">
 
 				<div className="row pt-2">
@@ -44,7 +45,7 @@ const BusinessDashoard = () => {
 								my business
 							</button>
 							<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-								<li><a className="dropdown-item" href="/#"><CreateDeal /></a></li>
+								<li className="dropdown-item" ><CreateDeal /></li>
 								<li><a className="dropdown-item" href="/#">Log out</a></li>
 							</ul>
 						</div>
