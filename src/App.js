@@ -1,14 +1,18 @@
 import './App.css';
-import BusinessDashoard from './Components/BusinessDashboard';
+import ConnectHome from './Components/ConnectHome';
+// import Find from './Components/Find';
+// import BusinessDashoard from './Components/BusinessDashboard';
 import NaviBar from './Components/NavBar';
 // import Signin from './Components/Signin';
 
 function App() {
   return (
     <div>
-      <NaviBar />
       {/* <Signin /> */}
-      <BusinessDashoard />
+      <NaviBar />
+      <ConnectHome />
+      {/* <BusinessDashoard /> */}
+      {/* <Find /> */}
     </div>
   );
 }
