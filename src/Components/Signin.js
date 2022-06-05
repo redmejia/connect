@@ -2,15 +2,22 @@ import { Form, FormGroup, Col, Input, Button } from 'reactstrap';
 import { useNavigate } from "react-router-dom";
 import '../App.css'
 import logo from '../public/connect.svg'
+import { useSelector, useDispatch } from "react-redux";
 import CreateAccount from './CreateAccount';
+import { newSignin } from "../Redux/signin";
+import { useState } from 'react';
 
 
 
 const Signin = () => {
-
+	let dispatch = useDispatch()
+	const { signin } = useSelector(state => state.signin)
 	let navigate = useNavigate();
 
-	const nav = () => {
+	const [form, setForm] = useState({ email: '', password: '' })
+
+	if (signin.success.is_auth) {
+		localStorage.setItem('token', signin.success.token)
 		navigate('/c/home', { replace: false })
 	}
 
@@ -24,23 +31,22 @@ const Signin = () => {
 					<Form>
 						<FormGroup row>
 							<Col sm={20}>
-								<Input type="email" name="email" id="exampleEmail" placeholder="email" />
+								<Input onChange={e => setForm({ ...form, [e.target.name]: e.target.value })} type="email" name="email" placeholder="email" autoComplete='on' />
 							</Col>
 						</FormGroup>
 						<FormGroup row>
 							<Col sm={20}>
-								<Input type="password" name="password" id="examplePassword" placeholder="password" />
+								<Input onChange={e => setForm({ ...form, [e.target.name]: e.target.value })} type="password" name="password" placeholder="password" autoComplete='on' />
 							</Col>
 						</FormGroup>
 					</Form>
-					<Button onClick={() => nav()} color="primary">Signin</Button>
+					<Button onClick={() => dispatch(newSignin(form))} color="primary">Signin</Button>
 					<br />
 					<CreateAccount />
 				</div>
 			</div>
 		</>
 	)
-
 }
 
 export default Signin;

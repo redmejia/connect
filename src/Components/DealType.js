@@ -2,8 +2,9 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from 'react';
 import { getDealsByType } from "../Redux/business";
+import { useNavigate } from "react-router-dom";
 import NaviBar from "./NavBar";
-import Loading from "./Loading";
+// import Loading from "./Loading";
 
 const RenderDeals = ({ deal }) => {
 
@@ -25,20 +26,26 @@ const DealType = () => {
 	let { type } = useParams()
 	const dispatch = useDispatch()
 
+	let navigate = useNavigate()
 
-	const { deals, pending } = useSelector(state => state.business || {})
+	const { deals, error } = useSelector(state => state.business || {})
+
 
 	useEffect(() => {
 		dispatch(getDealsByType(type))
 	}, [dispatch, type])
 
-	if (pending) {
-		return <Loading />
+	if (error.error) {
+		localStorage.removeItem('token')
+		navigate('/', { replace: true })
+	}
+	
+	// if (pending) {
+	// 	return <Loading  />
+	// }
 
-	} 
 
 	const dealsData = deals.map(deal => (<RenderDeals deal={deal} />))
-
 
 	return (
 		<>
