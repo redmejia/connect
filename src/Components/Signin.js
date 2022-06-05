@@ -9,11 +9,11 @@ import CreateAccount from './CreateAccount';
 const Signin = () => {
 
 	let navigate = useNavigate();
-	
+
 	const nav = () => {
-		navigate('/c/home')
+		navigate('/c/home', { replace: false })
 	}
-	
+
 	return (
 		<>
 			<div className='logo'>

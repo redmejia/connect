@@ -4,34 +4,27 @@ import NaviBar from "./NavBar";
 const RenderDeals = ({ deal }) => {
 
 	return (
-		<a href="/#" class="list-group-item list-group-item-action">
-			<div class="d-flex w-100 justify-content-between">
-				<h5 class="mb-1">{deal.product_name}</h5>
-				<small class="text-muted">{deal.creatAt}</small>
-			</div>
-			<p class="mb-1">{deal.description}</p>
-			<small class="text-muted">$ {deal.price}</small> {' '}
-			<div style={{ float: 'right' }} class="btn-group" role="group" aria-label="Basic example">
-				<button type="button" class="btn btn-success">update</button>
-				<button type="button" class="btn btn-danger">delete</button>
-			</div>
-		</a>
+			<a href="/#" className="list-group-item list-group-item-action" key={deal.deal_id} >
+				<div className="d-flex w-100 justify-content-between">
+					<h5 className="mb-1">{deal.product_name}</h5>
+					<small className="text-muted">{deal.deal_start}</small>
+				</div>
+				<p className="mb-1">{deal.deal_desciption}</p>
+				<small className="text-muted">$ {deal.price}</small> {' '}
+				<div style={{ float: 'right' }} className="btn-group" role="group" aria-label="Basic example">
+					<button type="button" className="btn btn-success">update</button>
+					<button type="button" className="btn btn-danger">delete</button>
+				</div>
+			</a>
 	)
 
 }
 
-const mock = [
-	{ product_name: "ram", description: "seling extras inventorie of ram 4 packge", creatAt: '2022-5-31', price: 50.00 },
-	{ product_name: "moderbord", description: "seling extras inventorie of ram 4 packge", creatAt: '2022-5-31', price: 51.00 },
-	{ product_name: "Cpu", description: "seling extras inventorie of ram 4 packge", creatAt: '2022-5-21', price: 123.00 },
-	{ product_name: "gamer headphone", description: "seling extras inventorie of ram 4 packge", creatAt: '2022-5-24', price: 58.00 }
 
-]
+const BusinessDashoard = ({deals}) => {
 
+	const dealsData = deals.map(deal => (<RenderDeals deal={deal} />))
 
-const BusinessDashoard = () => {
-
-	const fakeData = mock.map(deal => (<RenderDeals deal={deal} />))
 
 	return (
 		<>
@@ -41,10 +34,10 @@ const BusinessDashoard = () => {
 				<div className="row pt-2">
 					<div className="col">
 						<div style={{ float: 'right' }} className="dropdown">
-							<button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+							<button className="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
 								my business
 							</button>
-							<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+							<ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
 								<li className="dropdown-item" ><CreateDeal /></li>
 								<li><a className="dropdown-item" href="/#">Log out</a></li>
 							</ul>
@@ -64,8 +57,8 @@ const BusinessDashoard = () => {
 				<div className="row">
 					<div className="col">
 						<hr />
-						<div class="list-group">
-							{fakeData}
+						<div className="list-group">
+							{dealsData}
 						</div>
 					</div>
 				</div>

@@ -3,9 +3,11 @@ import sunOne from '../public/sun1.png'
 import sunTwo from '../public/sun2.png'
 import '../App.css'
 import NaviBar from '../Components/NavBar'
+import { useNavigate } from 'react-router-dom'
 
 
 const ConnectHome = () => {
+	let navigate = useNavigate()
 	return (
 		<>
 			<NaviBar />
@@ -53,7 +55,7 @@ const ConnectHome = () => {
 				</div>
 				<div className='text-light  top-right'>
 					<div className="mt-5 b-container">
-						<button class="btn-go">Find more</button>
+						<button className="btn-go">Find more</button>
 					</div>
 				</div>
 			</div>
@@ -87,27 +89,23 @@ const ConnectHome = () => {
 				<div className='col text-center pt-4'>
 					<p className='fs-2'>Business Deals</p>
 					<p className='fs-3'>Are you looking for a product for your business ? </p>
-					<button className='btn btn-success' >See what is new</button>
+					<button className='btn btn-success' onClick={() => navigate('/find', { replace: false })}>See what is new</button>
 				</div>
 			</div>
 
 
 			<div className='container'>
 				<div className='col text-center mt-5'>
-					<p className=' fs-1'>Summer is almos here are those product ideal for your  business type</p>
+					<p className=' fs-1'>Summer is almos here are these product ideal for your  business type</p>
 					<div className="col  recomendation-img">
 						<img src={sunOne} alt="recomendation" />
 						<img src={sunTwo} alt="recomendation" />
 					</div>
 				</div>
-				{/* <div className="row g-0">
-					<div className="col align-self-center recomendation-img">
-					</div>
-				</div> */}
 			</div>
 
 			<footer className='site-footer mt-5'>
-				
+
 			</footer>
 
 		</>
