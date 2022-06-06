@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import businessSlice from "../Redux/business";
-import signinSlice from "../Redux/signin";
+import authSlice from "../Redux/auth";
 
 export default configureStore({
 	reducer : {
 		business : businessSlice,
-		signin :  signinSlice,
+		auth :  authSlice, // business auth
 	}
 })

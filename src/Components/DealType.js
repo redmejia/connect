@@ -29,6 +29,7 @@ const DealType = () => {
 	let navigate = useNavigate()
 
 	const { deals, error } = useSelector(state => state.business || {})
+	const { signin } = useSelector(state => state.signin || {})
 
 
 	useEffect(() => {
@@ -38,8 +39,8 @@ const DealType = () => {
 	if (error.error) {
 		localStorage.removeItem('token')
 		navigate('/', { replace: true })
+
 	}
-	
 	// if (pending) {
 	// 	return <Loading  />
 	// }

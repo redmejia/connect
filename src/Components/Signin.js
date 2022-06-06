@@ -4,14 +4,14 @@ import '../App.css'
 import logo from '../public/connect.svg'
 import { useSelector, useDispatch } from "react-redux";
 import CreateAccount from './CreateAccount';
-import { newSignin } from "../Redux/signin";
+import { newSignin } from "../Redux/auth";
 import { useState } from 'react';
 
 
 
 const Signin = () => {
 	let dispatch = useDispatch()
-	const { signin } = useSelector(state => state.signin)
+	const { signin } = useSelector(state => state.auth)
 	let navigate = useNavigate();
 
 	const [form, setForm] = useState({ email: '', password: '' })
