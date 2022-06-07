@@ -28,12 +28,11 @@ const DealType = () => {
 
 	let navigate = useNavigate()
 
-	
-	
+
 	useEffect(() => {
 		dispatch(getDealsByType(type))
 	}, [dispatch, type])
-	
+
 	const { deals, error } = useSelector(state => state.business || {})
 	if (error.error) {
 		localStorage.removeItem('token')
