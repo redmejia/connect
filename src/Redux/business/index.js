@@ -10,6 +10,14 @@ export const getDealsByType = createAsyncThunk(
 	}
 )
 
+export const getMyDealsById = createAsyncThunk(
+	'business/fetchMyDealsByID',
+	async (businessId) => {
+		const resp = await ApiCalls.fetchMyDealsById(businessId)
+		return resp
+	}
+)
+
 export const createNewDealOffer = createAsyncThunk(
 	'business/new/deal',
 	async (deal) => {
@@ -23,35 +31,47 @@ const businessSlice = createSlice({
 	initialState: {
 		deals: [],
 		error: {
-			error : false,
-			msg : ''
+			error: false,
+			msg: ''
 		},
-		myDeals  : [],
+		myDeals: [],
 		pending: true
 	},
 	reducers: {},
 
 	extraReducers: {
+		// Deals by type
 		[getDealsByType.pending]: (state) => {
 			state.pending = true
 		},
-	
+		
 		[getDealsByType.fulfilled]: (state, action) => {
-			if(action.payload.error){
+			if (action.payload.error) {
 				state.error = action.payload
 				state.pending = true
-			}else{
+			} else {
 				state.deals = action.payload.deals
 				state.pending = false
 			}
 		},
 
-		[createNewDealOffer.pending] : (state) => {
+		// Business deals for business dashboard
+		[createNewDealOffer.pending]: (state) => {
 			state.pending = true
 		},
-		[createNewDealOffer.fulfilled] : (state, action) =>{
+		[createNewDealOffer.fulfilled]: (state, action) => {
 			state.myDeals.push(action.payload.myDeal)
+		},
+
+		[getMyDealsById.pending] : (state) => {
+			state.pending = true
+		},
+		[getMyDealsById.fulfilled] : (state, action) => {
+			state.myDeals = action.payload.myDeals
+			state.pending = false
 		}
+
+
 	}
 });
 

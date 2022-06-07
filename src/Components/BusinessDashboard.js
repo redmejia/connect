@@ -1,13 +1,15 @@
 import CreateDeal from "./CreateDeal";
 import NaviBar from "./NavBar";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from "react";
+import { getMyDealsById } from "../Redux/business";
 
 
 // render business deals
 const RenderDeals = ({ deal }) => {
 
 	return (
-		<a href="/#" className="list-group-item disabeled list-group-item-action" key={deal.deal_id} >
+		<div className="list-group-item list-group-item-action" key={deal.deal_id} >
 			<div className="d-flex w-100 justify-content-between">
 				<h5 className="mb-1">{deal.product_name}</h5>
 				<small className="text-muted">{deal.deal_start}</small>
@@ -15,10 +17,10 @@ const RenderDeals = ({ deal }) => {
 			<p className="mb-1">{deal.deal_desciption}</p>
 			<small className="text-muted">$ {deal.price}</small> {' '}
 			<div style={{ float: 'right' }} className="btn-group" role="group" aria-label="Basic example">
-				<button type="button" className="btn btn-success">update</button>
+				<button onClick={() => alert("hello")} type="button" className="btn btn-success">update</button>
 				<button type="button" className="btn btn-danger">delete</button>
 			</div>
-		</a>
+		</div>
 	)
 
 }
@@ -31,14 +33,18 @@ const BusinessDashoard = () => {
 		business_id: localStorage.getItem('business_id'),
 		business_name: localStorage.getItem('business_name')
 	}
-	
+
+	let dispatch = useDispatch()
+
+	useEffect(() => {
+		dispatch(getMyDealsById(localStorage.getItem('business_id')))
+	}, [dispatch])
+
 	const { myDeals } = useSelector(state => state.business || [])
-	
-	
-	
-	// console.log(business);
-	console.log(myDeals);
-	
+
+
+
+
 	const dealsData = myDeals.map(deal => (<RenderDeals deal={deal} />))
 
 	return (
@@ -68,17 +74,15 @@ const BusinessDashoard = () => {
 
 			</div>
 
-			<div className="container mt-5">
+			<div className="container mt-5 mb-5">
 				<div className="row">
 					<div className="col">
 						<hr />
-						hello everything will appeare here.
 						<div className="list-group">
 							{dealsData}
 						</div>
 					</div>
 				</div>
-
 			</div>
 		</>
 	)

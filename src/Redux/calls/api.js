@@ -28,14 +28,14 @@ export const ApiCalls = {
 	},
 
 	async createNewDeal(newDeal) {
-		const resp = await fetch(BASE + "my/business",{
-			method : 'POST',
+		const resp = await fetch(BASE + "my/business", {
+			method: 'POST',
 			headers: {
 				"Content-Type": "application/json",
 				"Authorization": "Bearer " + localStorage.getItem('token')
 			},
 			credentials: 'include',
-			body : JSON.stringify(newDeal)
+			body: JSON.stringify(newDeal)
 		})
 
 		return resp.json()
@@ -53,4 +53,15 @@ export const ApiCalls = {
 		return resp.json()
 
 	},
+	async fetchMyDealsById(businessId) {
+		const resp = await fetch(BASE + "my/business/my/deals?bus-id=" + businessId, {
+			headers: {
+				"Content-Type": "application/json",
+				"Authorization": "Bearer " + localStorage.getItem('token')
+			},
+			credentials: 'include',
+		})
+
+		return resp.json()
+	}
 }

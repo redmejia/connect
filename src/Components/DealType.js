@@ -9,14 +9,14 @@ import NaviBar from "./NavBar";
 const RenderDeals = ({ deal }) => {
 
 	return (
-		<a href="/#" className="list-group-item disabled list-group-item-action" key={deal.deal_id} >
+		<div className="list-group-item list-group-item-action" key={deal.deal_id} >
 			<div className="d-flex w-100 justify-content-between">
 				<h5 className="mb-1">{deal.product_name}</h5>
 				<small className="text-muted">{deal.deal_start}</small>
 			</div>
 			<p className="mb-1">{deal.deal_desciption}</p>
 			<small className="text-muted">$ {deal.price}</small> {' '}
-		</a>
+		</div>
 	)
 
 }
@@ -28,14 +28,13 @@ const DealType = () => {
 
 	let navigate = useNavigate()
 
-	const { deals, error } = useSelector(state => state.business || {})
-	// const { signin } = useSelector(state => state.signin || {})
-
-
+	
+	
 	useEffect(() => {
 		dispatch(getDealsByType(type))
 	}, [dispatch, type])
-
+	
+	const { deals, error } = useSelector(state => state.business || {})
 	if (error.error) {
 		localStorage.removeItem('token')
 		navigate('/', { replace: true })
@@ -52,7 +51,7 @@ const DealType = () => {
 		<>
 			<NaviBar />
 
-			<div className="container mt-5">
+			<div className="container mt-5 mb-5">
 				<div className="row">
 					<div className="text-center">
 						<h1>Technologies</h1>
