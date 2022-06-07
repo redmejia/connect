@@ -37,8 +37,10 @@ const DealType = () => {
 	const { deals, error } = useSelector(state => state.business || {})
 	if (error.error) {
 		localStorage.removeItem('token')
+		localStorage.removeItem("business_id")
+		localStorage.removeItem("is_auth")
+		localStorage.removeItem("business_name")
 		navigate('/', { replace: true })
-
 	}
 	// if (pending) {
 	// 	return <Loading  />

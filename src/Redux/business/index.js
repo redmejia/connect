@@ -67,8 +67,13 @@ const businessSlice = createSlice({
 			state.pending = true
 		},
 		[getMyDealsById.fulfilled] : (state, action) => {
-			state.myDeals = action.payload.myDeals
-			state.pending = false
+			if (action.payload.error) {
+				state.error = action.payload
+				state.pending = true
+			} else {
+				state.myDeals = action.payload.myDeals
+				state.pending = false
+			}
 		}
 
 

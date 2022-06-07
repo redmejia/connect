@@ -3,6 +3,7 @@ import NaviBar from "./NavBar";
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from "react";
 import { getMyDealsById } from "../Redux/business";
+import { useNavigate } from "react-router-dom";
 
 
 // render business deals
@@ -28,6 +29,7 @@ const RenderDeals = ({ deal }) => {
 
 const BusinessDashoard = () => {
 
+	let navigate = useNavigate()
 
 	const business = {
 		business_id: localStorage.getItem('business_id'),
@@ -40,8 +42,15 @@ const BusinessDashoard = () => {
 		dispatch(getMyDealsById(localStorage.getItem('business_id')))
 	}, [dispatch])
 
-	const { myDeals } = useSelector(state => state.business || [])
+	const { myDeals, error } = useSelector(state => state.business || [])
 
+	if (error.error) {
+		localStorage.removeItem('token')
+		localStorage.removeItem("business_id")
+		localStorage.removeItem("is_auth")
+		localStorage.removeItem("business_name")
+		navigate("/", {replace : true})
+	}
 
 
 
