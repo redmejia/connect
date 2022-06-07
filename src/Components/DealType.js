@@ -29,7 +29,7 @@ const DealType = () => {
 	let navigate = useNavigate()
 
 	const { deals, error } = useSelector(state => state.business || {})
-	const { signin } = useSelector(state => state.signin || {})
+	// const { signin } = useSelector(state => state.signin || {})
 
 
 	useEffect(() => {

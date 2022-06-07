@@ -23,6 +23,7 @@ const authSlice = createSlice({
 		signin: {
 			success: {
 				business_id: 0,
+				business_name: "",
 				is_auth: false,
 				token: ""
 			},
@@ -34,6 +35,7 @@ const authSlice = createSlice({
 		register: {
 			success: {
 				business_id: 0,
+				business_name: "",
 				is_auth: false,
 				token: ""
 			},

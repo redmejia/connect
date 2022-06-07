@@ -1,30 +1,45 @@
 import CreateDeal from "./CreateDeal";
 import NaviBar from "./NavBar";
+import { useSelector } from 'react-redux';
 
+
+// render business deals
 const RenderDeals = ({ deal }) => {
 
 	return (
-			<a href="/#" className="list-group-item list-group-item-action" key={deal.deal_id} >
-				<div className="d-flex w-100 justify-content-between">
-					<h5 className="mb-1">{deal.product_name}</h5>
-					<small className="text-muted">{deal.deal_start}</small>
-				</div>
-				<p className="mb-1">{deal.deal_desciption}</p>
-				<small className="text-muted">$ {deal.price}</small> {' '}
-				<div style={{ float: 'right' }} className="btn-group" role="group" aria-label="Basic example">
-					<button type="button" className="btn btn-success">update</button>
-					<button type="button" className="btn btn-danger">delete</button>
-				</div>
-			</a>
+		<a href="/#" className="list-group-item disabeled list-group-item-action" key={deal.deal_id} >
+			<div className="d-flex w-100 justify-content-between">
+				<h5 className="mb-1">{deal.product_name}</h5>
+				<small className="text-muted">{deal.deal_start}</small>
+			</div>
+			<p className="mb-1">{deal.deal_desciption}</p>
+			<small className="text-muted">$ {deal.price}</small> {' '}
+			<div style={{ float: 'right' }} className="btn-group" role="group" aria-label="Basic example">
+				<button type="button" className="btn btn-success">update</button>
+				<button type="button" className="btn btn-danger">delete</button>
+			</div>
+		</a>
 	)
 
 }
 
 
-const BusinessDashoard = ({deals}) => {
+const BusinessDashoard = () => {
 
-	const dealsData = deals.map(deal => (<RenderDeals deal={deal} />))
 
+	const business = {
+		business_id: localStorage.getItem('business_id'),
+		business_name: localStorage.getItem('business_name')
+	}
+	
+	const { myDeals } = useSelector(state => state.business || [])
+	
+	
+	
+	// console.log(business);
+	console.log(myDeals);
+	
+	const dealsData = myDeals.map(deal => (<RenderDeals deal={deal} />))
 
 	return (
 		<>
@@ -35,10 +50,10 @@ const BusinessDashoard = ({deals}) => {
 					<div className="col">
 						<div style={{ float: 'right' }} className="dropdown">
 							<button className="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-								my business
+								{business.business_name}
 							</button>
 							<ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-								<li className="dropdown-item" ><CreateDeal /></li>
+								<li className="dropdown-item" ><CreateDeal business={business} /></li>
 								<li><a className="dropdown-item" href="/#">Log out</a></li>
 							</ul>
 						</div>
@@ -57,6 +72,7 @@ const BusinessDashoard = ({deals}) => {
 				<div className="row">
 					<div className="col">
 						<hr />
+						hello everything will appeare here.
 						<div className="list-group">
 							{dealsData}
 						</div>

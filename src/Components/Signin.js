@@ -17,6 +17,9 @@ const Signin = () => {
 	const [form, setForm] = useState({ email: '', password: '' })
 
 	if (signin.success.is_auth) {
+		localStorage.setItem('business_id', signin.success.business_id)
+		localStorage.setItem('business_name', signin.success.business_name)
+		localStorage.setItem('is_auth', signin.success.is_auth)
 		localStorage.setItem('token', signin.success.token)
 		navigate('/c/home', { replace: false })
 	}
