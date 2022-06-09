@@ -54,6 +54,14 @@ const BusinessDashoard = () => {
 		navigate("/", { replace: true })
 	}
 
+	const logout = () => {
+		localStorage.removeItem('token')
+		localStorage.removeItem("business_id")
+		localStorage.removeItem("is_auth")
+		localStorage.removeItem("business_name")
+		navigate("/", { replace: true })
+	}
+
 	const dealsData = myDeals.map(deal => (<RenderDeals deal={deal} />))
 
 	return (
@@ -69,7 +77,7 @@ const BusinessDashoard = () => {
 							</button>
 							<ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
 								<li className="dropdown-item" ><CreateDeal business={business} /></li>
-								<li><a className="dropdown-item" href="/#">Log out</a></li>
+								<li><a onClick={() => logout()} className="dropdown-item" href="/#">Log out</a></li>
 							</ul>
 						</div>
 					</div>
