@@ -2,12 +2,13 @@ import CreateDeal from "./CreateDeal";
 import NaviBar from "./NavBar";
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from "react";
-import { getMyDealsById } from "../Redux/business";
+import { getMyDealsById, deleteMyDealOrOffer } from "../Redux/business";
 import { useNavigate } from "react-router-dom";
 
 
 // render business deals
 const RenderDeals = ({ deal }) => {
+	let dispatch = useDispatch()
 
 	return (
 		<div className="list-group-item list-group-item-action" key={deal.deal_id} >
@@ -18,8 +19,9 @@ const RenderDeals = ({ deal }) => {
 			<p className="mb-1">{deal.deal_desciption}</p>
 			<small className="text-muted">$ {deal.price}</small> {' '}
 			<div style={{ float: 'right' }} className="btn-group" role="group" aria-label="Basic example">
-				<button onClick={() => alert("hello")} type="button" className="btn btn-success">update</button>
-				<button type="button" className="btn btn-danger">delete</button>
+				<button type="button" className="btn btn-success">update</button>
+				<button type="button" onClick={() => dispatch(deleteMyDealOrOffer(deal))} className="btn btn-danger">delete</button>
+
 			</div>
 		</div>
 	)
@@ -49,10 +51,8 @@ const BusinessDashoard = () => {
 		localStorage.removeItem("business_id")
 		localStorage.removeItem("is_auth")
 		localStorage.removeItem("business_name")
-		navigate("/", {replace : true})
+		navigate("/", { replace: true })
 	}
-
-
 
 	const dealsData = myDeals.map(deal => (<RenderDeals deal={deal} />))
 
@@ -90,6 +90,7 @@ const BusinessDashoard = () => {
 						<div className="list-group">
 							{dealsData}
 						</div>
+
 					</div>
 				</div>
 			</div>

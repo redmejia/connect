@@ -63,5 +63,19 @@ export const ApiCalls = {
 		})
 
 		return resp.json()
+	},
+
+	async deleteMyDealOrOffer(deal) {
+		// console.log("the deal ", deal);
+		const resp = await fetch(`${BASE}my/business/del/deal?deal-id=${deal.deal_id}&bus-id=${deal.business_id}`, {
+			method: 'DELETE',
+			headers: {
+				"Content-Type": "application/json",
+				"Authorization": "Bearer " + localStorage.getItem('token')
+			},
+			credentials: 'include',
+		})
+
+		return resp.json()
 	}
 }
