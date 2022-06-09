@@ -31,6 +31,14 @@ const RenderDeals = ({ deal }) => {
 
 const BusinessDashoard = () => {
 
+	const logout = () => {
+		localStorage.removeItem('token')
+		localStorage.removeItem("business_id")
+		localStorage.removeItem("is_auth")
+		localStorage.removeItem("business_name")
+		navigate("/", { replace: true })
+	}
+
 	let navigate = useNavigate()
 
 	const business = {
@@ -54,13 +62,7 @@ const BusinessDashoard = () => {
 		navigate("/", { replace: true })
 	}
 
-	const logout = () => {
-		localStorage.removeItem('token')
-		localStorage.removeItem("business_id")
-		localStorage.removeItem("is_auth")
-		localStorage.removeItem("business_name")
-		navigate("/", { replace: true })
-	}
+
 
 	const dealsData = myDeals.map(deal => (<RenderDeals deal={deal} />))
 

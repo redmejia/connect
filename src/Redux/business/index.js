@@ -49,7 +49,6 @@ const businessSlice = createSlice({
 	},
 	reducers: {
 		deleteDealOrOffer: (state, action) => {
-			console.log(action.payload.deal_id);
 			state.myDeals = state.myDeals.filter((deal) => deal.deal_id !== action.payload.deal_id)
 		}
 	},
