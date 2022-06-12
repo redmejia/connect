@@ -50,7 +50,17 @@ const businessSlice = createSlice({
 	reducers: {
 		deleteDealOrOffer: (state, action) => {
 			state.myDeals = state.myDeals.filter((deal) => deal.deal_id !== action.payload.deal_id)
+		},
+		updateDeal: (state, action) => {
+			state.myDeals = state.myDeals.map((deal) => {
+				if (deal.deal_id === action.payload.deal_id) {
+					return action.payload
+				}
+
+				return deal
+			})
 		}
+
 	},
 
 	extraReducers: {
@@ -95,7 +105,8 @@ const businessSlice = createSlice({
 
 export default businessSlice.reducer;
 
-const { deleteDealOrOffer } = businessSlice.actions;
+const { deleteDealOrOffer, updateDeal } = businessSlice.actions;
+
 
 export const deleteMyDealOrOffer = (deal) => (dispatch) => {
 	dispatch(deleteDealOrOffer(deal))
@@ -107,4 +118,20 @@ export const deleteMyDealOrOffer = (deal) => (dispatch) => {
 		},
 		credentials: 'include',
 	})
+}
+
+
+export const updateDealOrOffer = (deal) => (dispatch) => {
+	dispatch(updateDeal(deal))
+	return fetch(`${BASE}my/business/my/deals?bus-id=${deal.deal_id}`, {
+		method: 'PATCH',
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": "Bearer " + localStorage.getItem('token')
+		},
+		credentials: 'include',
+		body: JSON.stringify(deal)
+	})
+
+
 }

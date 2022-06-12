@@ -24,7 +24,12 @@ const CreateDeal = ({ business }) => {
 	}
 
 	const submitDeal = () => {
-		const data = { ...newDeal, ...{ business_id: +newDeal['business_id'], price: parseFloat(newDeal['price']) } }
+		const data = {
+			...newDeal,
+			...{
+				business_id: +newDeal['business_id'], price: parseFloat(newDeal['price'])
+			}
+		}
 		dispatch(createNewDealOffer(data))
 		setOpen(false)
 	}

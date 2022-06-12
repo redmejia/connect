@@ -43,6 +43,7 @@ export const ApiCalls = {
 
 	async fetchDealsByType(businessType) {
 		const resp = await fetch(BASE + "my/business/deals?type=" + businessType, {
+			method : 'GET',
 			headers: {
 				"Content-Type": "application/json",
 				"Authorization": "Bearer " + localStorage.getItem('token')
@@ -55,6 +56,7 @@ export const ApiCalls = {
 	},
 	async fetchMyDealsById(businessId) {
 		const resp = await fetch(BASE + "my/business/my/deals?bus-id=" + businessId, {
+			method : 'GET',
 			headers: {
 				"Content-Type": "application/json",
 				"Authorization": "Bearer " + localStorage.getItem('token')
@@ -66,7 +68,6 @@ export const ApiCalls = {
 	},
 
 	async deleteMyDealOrOffer(deal) {
-		// console.log("the deal ", deal);
 		const resp = await fetch(`${BASE}my/business/del/deal?deal-id=${deal.deal_id}&bus-id=${deal.business_id}`, {
 			method: 'DELETE',
 			headers: {

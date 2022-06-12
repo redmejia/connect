@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from "react";
 import { getMyDealsById, deleteMyDealOrOffer } from "../Redux/business";
 import { useNavigate } from "react-router-dom";
+import UpdateDeal from "./UpdateDeal";
 
 
 // render business deals
@@ -19,7 +20,7 @@ const RenderDeals = ({ deal }) => {
 			<p className="mb-1">{deal.deal_desciption}</p>
 			<small className="text-muted">$ {deal.price}</small> {' '}
 			<div style={{ float: 'right' }} className="btn-group" role="group" aria-label="Basic example">
-				<button type="button" className="btn btn-success">update</button>
+				<UpdateDeal deal={deal}/>
 				<button type="button" onClick={() => dispatch(deleteMyDealOrOffer(deal))} className="btn btn-danger">delete</button>
 
 			</div>
@@ -53,7 +54,6 @@ const BusinessDashoard = () => {
 	}, [dispatch])
 
 	const { myDeals, error } = useSelector(state => state.business || [])
-
 	if (error.error) {
 		localStorage.removeItem('token')
 		localStorage.removeItem("business_id")
@@ -61,8 +61,8 @@ const BusinessDashoard = () => {
 		localStorage.removeItem("business_name")
 		navigate("/", { replace: true })
 	}
-
-
+	
+	
 
 	const dealsData = myDeals.map(deal => (<RenderDeals deal={deal} />))
 
