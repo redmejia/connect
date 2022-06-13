@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Button, Modal, ModalBody, ModalFooter, Form, FormGroup, Col, Input } from 'reactstrap';
 import { createNewDealOffer } from "../Redux/business";
 
-const CreateDeal = ({ business }) => {
+const CreateDeal = () => {
 
 	let dispatch = useDispatch()
 
@@ -12,8 +12,9 @@ const CreateDeal = ({ business }) => {
 
 
 	const [newDeal, setNewDeal] = useState({
-		business_id: business.business_id,
-		business_type: "Software",
+		business_id: localStorage.getItem('business_id'),
+		business_type: localStorage.getItem('business_type'),
+		business_name: localStorage.getItem('business_name'),
 		product_name: "",
 		deal_desciption: "",
 		price: 0.0
@@ -33,7 +34,6 @@ const CreateDeal = ({ business }) => {
 		dispatch(createNewDealOffer(data))
 		setOpen(false)
 	}
-
 
 	return (
 		<>

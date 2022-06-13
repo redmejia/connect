@@ -12,10 +12,12 @@ const RenderDeals = ({ deal }) => {
 		<div className="list-group-item list-group-item-action" key={deal.deal_id} >
 			<div className="d-flex w-100 justify-content-between">
 				<h5 className="mb-1">{deal.product_name}</h5>
-				<small className="text-muted">{deal.deal_start}</small>
+				<small className="text-muted">Created: {deal.deal_start}</small>
 			</div>
 			<p className="mb-1">{deal.deal_desciption}</p>
 			<small className="text-muted">$ {deal.price}</small> {' '}
+			<hr></hr>
+			<small style={{float : 'right'}} className="text-muted">By {deal.business_name}</small>
 		</div>
 	)
 

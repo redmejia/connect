@@ -12,6 +12,7 @@ const UpdateDeal = ({ deal }) => {
 		deal_id: deal.deal_id,
 		business_id: deal.business_id,
 		product_name: deal.product_name,
+		business_name: deal.business_name,
 		deal_desciption: deal.deal_desciption,
 		price: deal.price
 	})
@@ -26,7 +27,7 @@ const UpdateDeal = ({ deal }) => {
 	const submitChanges = () => {
 		const data = {
 			...newUpdatedDeal,
-			...{price : parseFloat(newUpdatedDeal['price'])}
+			...{ price: parseFloat(newUpdatedDeal['price']) }
 		}
 		dispatch(updateDealOrOffer(data))
 		setOpen(false)
@@ -57,17 +58,17 @@ const UpdateDeal = ({ deal }) => {
 					<Form>
 						<FormGroup row>
 							<Col sm={20}>
-								<Input type="text" onChange={(e)=> handleChange(e)} name="product_name" placeholder="product name" />
+								<Input type="text" onChange={(e) => handleChange(e)} name="product_name" placeholder="product name" />
 							</Col>
 						</FormGroup>
 						<FormGroup>
 							<Col sm={20}>
-								<Input type="text" onChange={(e)=> handleChange(e)} name="deal_desciption" id="exampleEmail" placeholder="short description" />
+								<Input type="text" onChange={(e) => handleChange(e)} name="deal_desciption" id="exampleEmail" placeholder="short description" />
 							</Col>
 						</FormGroup>
 						<FormGroup row>
 							<Col sm={20}>
-								<Input type="text" onChange={(e)=> handleChange(e)} name="price" placeholder="price" />
+								<Input type="text" onChange={(e) => handleChange(e)} name="price" placeholder="price" />
 							</Col>
 						</FormGroup>
 						<FormGroup row>
@@ -78,7 +79,7 @@ const UpdateDeal = ({ deal }) => {
 					</Form>
 				</ModalBody>
 				<ModalFooter>
-					<Button color="success" onClick={() => submitChanges() }>Update Deal</Button>{' '}
+					<Button color="success" onClick={() => submitChanges()}>Update Deal</Button>{' '}
 					<Button color="danger" onClick={() => setOpen(false)}>exit</Button>
 				</ModalFooter>
 			</Modal>
