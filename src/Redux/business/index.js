@@ -1,6 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { ApiCalls, BASE } from "../calls/api";
 
+export const getMyBusinessInfo = createAsyncThunk(
+	'business/my/business',
+	async (businessId) => {
+		const resp = await ApiCalls.fetchMyBusinessInfo(businessId)
+
+		return resp
+	}
+)
 
 export const getDealsByType = createAsyncThunk(
 	'business/fetchDealsByType',
@@ -40,30 +48,41 @@ const businessSlice = createSlice({
 	name: 'business',
 	initialState: {
 		deals: [],
+		myBusiness: {
+			my_business: {},
+			my_deals: [],
+		},
+		myDeals: [],
 		error: {
 			error: false,
 			msg: ''
 		},
-		myDeals: [],
 		pending: true
 	},
 	reducers: {
 		deleteDealOrOffer: (state, action) => {
-			state.myDeals = state.myDeals.filter((deal) => deal.deal_id !== action.payload.deal_id)
+			state.myBusiness.my_deals = state.myBusiness.my_deals.filter((deal) => deal.deal_id !== action.payload.deal_id)
 		},
 		updateDeal: (state, action) => {
-			state.myDeals = state.myDeals.map((deal) => {
+			state.myBusiness.my_deals = state.myBusiness.my_deals.map((deal) => {
 				if (deal.deal_id === action.payload.deal_id) {
 					return action.payload
 				}
 
 				return deal
 			})
+		},
+		updateBusinessProfile: (state, action) => {
+			state.myBusiness.my_business = action.payload
 		}
+
+
 
 	},
 
 	extraReducers: {
+
+
 		// Deals by type
 		[getDealsByType.pending]: (state) => {
 			state.pending = true
@@ -78,15 +97,33 @@ const businessSlice = createSlice({
 				state.pending = false
 			}
 		},
+		//my business
+		[getMyBusinessInfo.pending]: (state) => {
+			state.pending = true
+		},
+		[getMyBusinessInfo.fulfilled]: (state, action) => {
+			if (action.payload.error) {
+				state.error = action.payload
+				state.pending = true
+			} else {
+
+				state.myBusiness = action.payload.myBusiness
+				state.pending = false
+			}
+		},
 
 		// Business deals for business dashboard
 		[createNewDealOffer.pending]: (state) => {
 			state.pending = true
 		},
 		[createNewDealOffer.fulfilled]: (state, action) => {
-			state.myDeals.push(action.payload.myDeal)
+			state.myBusiness.my_deals.push(action.payload.myDeal)
 		},
 
+
+
+
+		// getMyDealById only deal for espesific business
 		[getMyDealsById.pending]: (state) => {
 			state.pending = true
 		},
@@ -105,7 +142,7 @@ const businessSlice = createSlice({
 
 export default businessSlice.reducer;
 
-const { deleteDealOrOffer, updateDeal } = businessSlice.actions;
+const { deleteDealOrOffer, updateDeal, updateBusinessProfile } = businessSlice.actions;
 
 
 export const deleteMyDealOrOffer = (deal) => (dispatch) => {
@@ -120,7 +157,7 @@ export const deleteMyDealOrOffer = (deal) => (dispatch) => {
 	})
 }
 
-
+// Deal or offer update
 export const updateDealOrOffer = (deal) => (dispatch) => {
 	dispatch(updateDeal(deal))
 	return fetch(`${BASE}my/business/my/deals?bus-id=${deal.deal_id}`, {
@@ -132,6 +169,18 @@ export const updateDealOrOffer = (deal) => (dispatch) => {
 		credentials: 'include',
 		body: JSON.stringify(deal)
 	})
+}
 
-
+// business profile update only business information
+export const updateMyProfile = (profile) => (dispatch) => {
+	dispatch(updateBusinessProfile(profile))
+	return fetch(`${BASE}my/business`, {
+		method: 'PATCH',
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": "Bearer " + localStorage.getItem('token')
+		},
+		credentials: 'include',
+		body: JSON.stringify(profile)
+	})
 }

@@ -43,7 +43,7 @@ export const ApiCalls = {
 
 	async fetchDealsByType(businessType) {
 		const resp = await fetch(BASE + "my/business/deals?type=" + businessType, {
-			method : 'GET',
+			method: 'GET',
 			headers: {
 				"Content-Type": "application/json",
 				"Authorization": "Bearer " + localStorage.getItem('token')
@@ -54,9 +54,22 @@ export const ApiCalls = {
 		return resp.json()
 
 	},
+	// business information include deals
+	async fetchMyBusinessInfo(businessId) {
+		const resp = await fetch(BASE + "my/business?bus-id=" + businessId, {
+			method: 'GET',
+			headers: {
+				"Content-Type": "application/json",
+				"Authorization": "Bearer " + localStorage.getItem('token')
+			},
+			credentials: 'include',
+		})
+
+		return resp.json()
+	},
 	async fetchMyDealsById(businessId) {
 		const resp = await fetch(BASE + "my/business/my/deals?bus-id=" + businessId, {
-			method : 'GET',
+			method: 'GET',
 			headers: {
 				"Content-Type": "application/json",
 				"Authorization": "Bearer " + localStorage.getItem('token')

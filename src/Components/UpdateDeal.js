@@ -14,6 +14,7 @@ const UpdateDeal = ({ deal }) => {
 		product_name: deal.product_name,
 		business_name: deal.business_name,
 		deal_desciption: deal.deal_desciption,
+		deal_start : deal.deal_start,
 		price: deal.price
 	})
 
