@@ -34,15 +34,6 @@ export const createNewDealOffer = createAsyncThunk(
 	}
 )
 
-// export const deleteDealOrOffer = createAsyncThunk(
-// 	'business/delete',
-// 	async ({ deal }) => {
-// 		// console.log("here action ", deal.deal_id, deal.business_id);
-// 		const resp = await ApiCalls.deleteMyDealOrOffer({ deal })
-// 		return resp
-// 	}
-// )
-
 
 const businessSlice = createSlice({
 	name: 'business',
@@ -73,11 +64,8 @@ const businessSlice = createSlice({
 			})
 		},
 		updateBusinessProfile: (state, action) => {
-			state.myBusiness.my_business = action.payload
+			state.myBusiness.my_business = { ...state.myBusiness.my_business, ...action.payload }
 		}
-
-
-
 	},
 
 	extraReducers: {

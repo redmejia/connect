@@ -9,7 +9,7 @@ import { Form, FormGroup, Col, Input } from 'reactstrap';
 
 
 // render business deals
-const RenderDeals = ({ deal }) => {
+const RenderDeals = ({ deal, businessInfo }) => {
 	let dispatch = useDispatch()
 
 	return (
@@ -21,7 +21,7 @@ const RenderDeals = ({ deal }) => {
 			<p className="mb-1">{deal.deal_desciption}</p>
 			<small className="text-muted">$ {deal.price}</small> {' '}
 			<hr></hr>
-			<small className="text-muted">By {deal.business_name}</small>
+			<small className="text-muted">By {businessInfo.business_name}</small>
 			<div style={{ float: 'right' }} className="btn-group" role="group" aria-label="Basic example">
 				<UpdateDeal deal={deal} />
 				<button type="button" onClick={() => dispatch(deleteMyDealOrOffer(deal))} className="btn btn-danger">delete</button>
@@ -62,7 +62,7 @@ const BusinessDashoard = () => {
 		localStorage.removeItem("business_type")
 		navigate("/", { replace: true })
 	}
-	const dealsData = myBusiness.my_deals.map(deal => (<RenderDeals deal={deal} />))
+	const dealsData = myBusiness.my_deals.map(deal => (<RenderDeals deal={deal} businessInfo={myBusiness.my_business} />))
 
 	const [profile, setProfile] = useState({})
 
@@ -107,7 +107,7 @@ const BusinessDashoard = () => {
 								<p className="card-text">Since : {myBusiness.my_business.founded}</p>
 								<div class="dropdown">
 									<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-										Dropdown
+										Update Profile
 									</button>
 									<ul class="dropdown-menu">
 										<div className="row">
