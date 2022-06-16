@@ -179,3 +179,29 @@
   background-color: #111;
   padding: 20px 0;
 }
+
+/* link styles */
+.link-opt{
+  text-decoration: none;
+  color: #ffff;
+}
+
+.link-opt :hover {
+  color: #ffff;
+}
+
+/* Find deal by business type */
+/* technology */
+.tech{
+  background: rgb(15,110,189);
+  background: linear-gradient(137deg, rgba(15,110,189,1) 25%, rgba(4,71,126,1) 71%); 
+}
+.agro{
+  background: rgb(0,17,36);
+  background: linear-gradient(319deg, rgba(0,17,36,1) 0%, rgba(81,193,189,1) 0%, rgba(127,162,128,1) 0%, rgba(46,145,99,1) 0%, rgba(5,136,85,1) 9%, rgba(142,197,138,1) 41%);
+}
+
+.food-drink{
+  background: rgb(197,138,138);
+  background: linear-gradient(137deg, rgba(197,138,138,1) 20%, rgba(215,69,69,1) 77%); 
+}

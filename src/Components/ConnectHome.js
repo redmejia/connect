@@ -3,7 +3,7 @@ import sunOne from '../public/sun1.png'
 import sunTwo from '../public/sun2.png'
 import '../App.css'
 import NaviBar from '../Components/NavBar'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 
 const ConnectHome = () => {
@@ -67,19 +67,25 @@ const ConnectHome = () => {
 				<div className="bus-types">
 					<div className="row gy-4">
 						<div className="col">
-							<div style={{ backgroundColor: '#8CC58A' }} className="box-tech">
-								<h1 className="text-center">Technologies</h1>
-							</div>
+							<Link className="link-opt" to={`/find/my/deal/Software`}>
+								<div className="tech box-tech">
+									<h1 className="text-center">Technologies</h1>
+								</div>
+							</Link>
 						</div>
 						<div className="col">
-							<div style={{ backgroundColor: '#C5C28A' }} className="box-tech">
-								<h1 className="text-center">Agriculture</h1>
-							</div>
+							<Link className="link-opt" to={`/find/my/deal/Agro`}>
+								<div className="agro box-tech">
+									<h1 className="text-center">Agriculture</h1>
+								</div>
+							</Link>
 						</div>
 						<div className="col">
-							<div style={{ backgroundColor: '#C58A8A' }} className="box-tech">
-								<h1 className="text-center">Food and Drinks</h1>
-							</div>
+							<Link className="link-opt" to={`/find/my/deal/Food`} >
+								<div className="food-drink box-tech">
+									<h1 className="text-center">Food and Drinks</h1>
+								</div>
+							</Link>
 						</div>
 					</div>
 				</div>
