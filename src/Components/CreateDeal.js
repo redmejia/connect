@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, Modal, ModalBody, ModalFooter, Form, FormGroup, Col, Input } from 'reactstrap';
 import { createNewDealOffer } from "../Redux/business";
+import { useSelector } from 'react-redux';
+
+
 
 const CreateDeal = () => {
 
@@ -10,11 +13,12 @@ const CreateDeal = () => {
 	const [open, setOpen] = useState(false)
 
 
+	// console.log("here", myBusiness.my_business.business_name);
+	const { myBusiness } = useSelector(state => state.business)
+
 
 	const [newDeal, setNewDeal] = useState({
 		business_id: localStorage.getItem('business_id'),
-		business_type: localStorage.getItem('business_type'),
-		business_name: localStorage.getItem('business_name'),
 		product_name: "",
 		deal_desciption: "",
 		price: 0.0
@@ -28,13 +32,17 @@ const CreateDeal = () => {
 		const data = {
 			...newDeal,
 			...{
-				business_id: +newDeal['business_id'], price: parseFloat(newDeal['price'])
+				business_id: +newDeal['business_id'], price: parseFloat(newDeal['price']),
+				business_name : myBusiness.my_business.business_name,
+				business_type : myBusiness.my_business.business_type,
 			}
 		}
+
+		// console.log(myBusiness.my_business.business_type);
 		dispatch(createNewDealOffer(data))
 		setOpen(false)
 	}
-
+	// console.log("new deal ", newDeal);
 	return (
 		<>
 			<Button color='link' onClick={() => setOpen(true)}> Create Offer/Deal </Button >
@@ -72,5 +80,6 @@ const CreateDeal = () => {
 		</>
 	)
 }
+
 
 export default CreateDeal;

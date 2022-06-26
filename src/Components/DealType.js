@@ -17,7 +17,7 @@ const RenderDeals = ({ deal }) => {
 			<p className="mb-1">{deal.deal_desciption}</p>
 			<small className="text-muted">$ {deal.price}</small> {' '}
 			<hr></hr>
-			<small style={{float : 'right'}} className="text-muted">By {deal.business_name}</small>
+			<small style={{ float: 'right' }} className="text-muted">By {deal.business_name}</small>
 		</div>
 	)
 
@@ -57,7 +57,8 @@ const DealType = () => {
 			<div className="container mt-5 mb-5">
 				<div className="row">
 					<div className="text-center">
-						<h1>Technologies</h1>
+						<h1>Let's Connect</h1>
+						<h3>Find your deal connect directly with a business</h3>
 					</div>
 					<div className="col">
 						<hr />

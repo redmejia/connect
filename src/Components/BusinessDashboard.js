@@ -38,28 +38,24 @@ const BusinessDashoard = () => {
 
 	const logout = () => {
 		localStorage.removeItem('token')
-		localStorage.removeItem("business_id") // not need
+		localStorage.removeItem("business_id")
 		localStorage.removeItem("is_auth")
-		localStorage.removeItem("business_name") // not need
-		localStorage.removeItem("business_type") // not need
 		navigate("/", { replace: true })
 	}
 
 	let navigate = useNavigate()
 	let dispatch = useDispatch()
 
+	const { myBusiness, error } = useSelector(state => state.business || [])
 	useEffect(() => {
 		// dispatch(getMyDealsById(localStorage.getItem('business_id')))
 		dispatch(getMyBusinessInfo(localStorage.getItem('business_id')))
 	}, [dispatch])
 
-	const { myBusiness, error } = useSelector(state => state.business || [])
 	if (error.error) {
 		localStorage.removeItem('token')
 		localStorage.removeItem("business_id")
 		localStorage.removeItem("is_auth")
-		localStorage.removeItem("business_name")
-		localStorage.removeItem("business_type")
 		navigate("/", { replace: true })
 	}
 	const dealsData = myBusiness.my_deals.map(deal => (<RenderDeals deal={deal} businessInfo={myBusiness.my_business} />))
@@ -85,7 +81,7 @@ const BusinessDashoard = () => {
 								{myBusiness.my_business.business_name}
 							</button>
 							<ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-								<li className="dropdown-item" ><CreateDeal /></li>
+								<li className="dropdown-item" ><CreateDeal myBusiness={myBusiness} /></li>
 								<li><a onClick={() => logout()} className="dropdown-item" href="/#">Log out</a></li>
 							</ul>
 						</div>

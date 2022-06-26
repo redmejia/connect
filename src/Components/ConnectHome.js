@@ -67,7 +67,7 @@ const ConnectHome = () => {
 				<div className="bus-types">
 					<div className="row gy-4">
 						<div className="col">
-							<Link className="link-opt" to={`/find/my/deal/Software`}>
+							<Link className="link-opt" to={`/find/my/deal/Tech`}>
 								<div className="tech box-tech">
 									<h1 className="text-center">Technologies</h1>
 								</div>
