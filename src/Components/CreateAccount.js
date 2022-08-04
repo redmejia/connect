@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { newAccount } from "../Redux/auth";
 
+
 const CreateAccount = () => {
 	const [open, setOpen] = useState(false)
 	let dispatch = useDispatch()
