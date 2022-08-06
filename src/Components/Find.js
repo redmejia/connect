@@ -20,7 +20,8 @@ const Find = () => {
 							</Link>
 						</div>
 						<div className="col">
-							<Link className="link-opt" to={`/find/my/deal/Agriculture`}>
+							{/* <Link className="link-opt" to={`/find/my/deal/Agriculture`}>  is how is colum on backend change later to this*/}
+							<Link className="link-opt" to={`/find/my/deal/AGRO`}>
 								<div className="agro box-tech">
 									<h1 className="text-center">Agriculture</h1>
 								</div>
@@ -30,6 +31,13 @@ const Find = () => {
 							<Link className="link-opt" to={`/find/my/deal/FoodandDrink`} >
 								<div className="food-drink box-tech">
 									<h1 className="text-center">Food and Drinks</h1>
+								</div>
+							</Link>
+						</div>
+						<div className="col">
+							<Link className="link-opt" to={`/c/deals`} >
+								<div className="connect-deals box-tech">
+									<h1 className="text-center">Connect Deals</h1>
 								</div>
 							</Link>
 						</div>

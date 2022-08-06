@@ -4,24 +4,8 @@ import { useEffect } from 'react';
 import { getDealsByType } from "../Redux/business";
 import { useNavigate } from "react-router-dom";
 import NaviBar from "./NavBar";
+import RenderDeals from "./Render";
 // import Loading from "./Loading";
-
-const RenderDeals = ({ deal }) => {
-
-	return (
-		<div className="list-group-item list-group-item-action" key={deal.deal_id} >
-			<div className="d-flex w-100 justify-content-between">
-				<h5 className="mb-1">{deal.product_name}</h5>
-				<small className="text-muted">Created: {deal.deal_start}</small>
-			</div>
-			<p className="mb-1">{deal.deal_desciption}</p>
-			<small className="text-muted">$ {deal.price}</small> {' '}
-			<hr></hr>
-			<small style={{ float: 'right' }} className="text-muted">By {deal.business_name}</small>
-		</div>
-	)
-
-}
 
 const DealType = () => {
 
@@ -48,7 +32,10 @@ const DealType = () => {
 	// }
 
 
-	const dealsData = deals.map(deal => (<RenderDeals deal={deal} />))
+	const dealsData = deals.map(deal => (<RenderDeals
+		deal={deal}
+		btnEnable={false}
+	/>))
 
 	return (
 		<>
