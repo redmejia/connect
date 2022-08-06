@@ -93,8 +93,8 @@ const ConnectHome = () => {
 
 			<div className='visit mt-5 mb-5'>
 				<div className='col text-center pt-4'>
-					<p className='fs-2'>Business Deals</p>
-					<p className='fs-3'>Are you looking for a product for your business ? </p>
+					<p className='fs-2'>Connect Deals</p>
+					<p className='fs-4'>Are you looking for a product for your business ?</p>
 					{/* This for the connect to sell thier product to the business for now redirect to /find where business posts deals/offers */}
 					<button className='btn btn-success' onClick={() => navigate('/c/deals', { replace: false })}>See what is new</button>
 				</div>
